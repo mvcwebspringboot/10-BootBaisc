@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.study.boot.persistence.MyBoardMapper">
+  <cache />
+  
+  <select id="findAll" resultType="com.study.boot.model.MyBoardVO">
+    select * from myBoard order by seq desc;
+  </select>
+  
+  <select id="getOne" resultType="com.study.boot.model.MyBoardVO">
+    select * from myBoard where seq = #{seq};
+  </select>
+  
+  <insert id="save" parameterType="com.study.boot.model.MyBoardVO">
+    insert into myBoard (writer, title, content) values (#{writer}, #{title}, #{content});
+  </insert>
+  
+  <delete id="delete">
+    delete from myBoard where seq = #{seq};
+  </delete>
+</mapper>
