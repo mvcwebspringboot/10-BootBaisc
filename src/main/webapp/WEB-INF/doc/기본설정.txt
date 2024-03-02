@@ -1,0 +1,46 @@
+서버포트, JSP, myBatis 설정
+
+  #JAVA버전 17 확인
+
+  #JSP설정 -> 폴더생성 WEB-INF>views
+  
+  1)pom.xml    
+    jakarta.servlet-api
+    tomcat-embed-jasper
+    jakarta.servlet.jsp.jstl
+    
+
+    로깅 설정
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-log4j2</artifactId>
+        <version>3.2.2</version><!--$NO-MVN-MAN-VER$-->
+    </dependency> 
+    
+    resources>log4j2.xml    
+    
+    사용법
+    @Log4j2    
+    @Test -> log.info()    
+
+  2)application.properties
+
+    #서버 port 
+    server.port=8090
+
+    # jsp 뷰 설정
+    spring.mvc.view.prefix=/WEB-INF/views/
+    spring.mvc.view.suffix=.jsp
+
+    #JSP수정시 서버 재시작없이 바로 적용될 수 있게 설정(Spring Boot 2.x 이상)
+    server.servlet.jsp.init-parameters.development=true
+
+    #mysql
+    spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver    
+    spring.datasource.url=jdbc:mysql://localhost:3306/bootex?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
+    spring.datasource.username=mvcweb
+    spring.datasource.password=1234
+
+    # mybatis
+    mybatis.config-location=classpath:myBatis/mybatis-config.xml
+    mybatis.mapper-locations=classpath:myBatis/mappers/**/**.xml

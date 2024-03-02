@@ -1,0 +1,114 @@
+샘플예제. 의존성주입과 스프링 - autowired_DI
+  이 예제는 스프링-자바 웹 개발 워크북 - 성장하는 개발자를 만드는 실무형 로드맵 - p222~258 의 내용을 스프링부트에서 실행한 것  
+
+예제1. 정적리소스와 JSP 설정 - Ex1Controller
+  resources > static > html+css+js, image 등의 파일 저장  
+  index.html, seodo.html 파일 생성후 코드 작성 및 실행테스트
+  
+  JSP 설정 
+  JSP를 사용하기 위해서는 직접 필요한 모듈을 pom.xml에 등록후 application.properties 에 설정해야 한다.
+ 
+  
+예제2. 컨트롤러에서 Model, ModelAndViw 이용 - Ex2Controller
+  1) 요청매핑을 설정한 메소드의 파라미터로 들어온 Model 객체에 데이터를 저장하여 뷰에 전달
+  2) ModelAndView 객체를 이용해서 데이터를 뷰에 전달
+  
+
+예제3. 클라이언트가 보낸 데이터 받기 - Ex3Controller
+  1) request.getParameter(), Model
+  2) @RequestParam(), Model
+  3) 커맨드객체 활용  
+    (1) 요청매핑을 설정한 메소드의 파라미터로 DTO를 넣어주면, 스프링은 클라이언트가 넘겨준 값을 DTO에 단는다.
+    (2) 이때 게터와 세터를 가진 이 DTO를 커맨드객체 라고 부른다.
+  4) @PathVariable, ModelAndView
+  
+  
+예제4. Form 값 검증
+  1) Ex4_1Controller - Validator, ValidationUtils
+  2) Ex4_2Controller - @InitBinder
+  3) Ex4_3Controller - @Valid를 이용해서 DTO에 어노테이션 설정
+  
+  
+예제5. 마이바티즈 게시판 - Ex5Controller
+  create table myBoard(
+    seq int primary key auto_increment,
+    writer varchar(50) not null,
+    title varchar(50) not null,
+    content text,
+    regdate datetime default now()
+  ) default character set utf8;
+  
+  insert into myBoard (writer, title, content) values ('둘리', '아기공룡둘리', '초능역 내친구~!');  
+  select * from myBoard;
+  
+  
+예제6. 트랜잭션 
+  1)트랜잭션의 개념과 필요성 - Ex6_1Controller
+    
+    create table transaction1 (
+      customerid varchar(20),
+      amount int
+    ) default character set utf8; 
+    
+    create table transaction2 (
+      customerid varchar(20),
+      amount int
+    ) default character set utf8; 
+    
+    create table transaction3 (
+      customerid varchar(20),
+      amount int
+    ) default character set utf8; 
+      
+      
+  2) 트랜잭션 매지저를 이용 - Ex6_2Controller
+      PlatformTransactionManager
+      TransactionDefinition
+      TransactionStatus    
+      transactionManager.commit(status)
+      transactionManager.rollback(status)
+    
+  
+  3) 트랜잭션 템플릿을 이용 - Ex6_3Controller
+  
+      트랜잭션 범위의 비지니스 로직을 감싸서 볼 수 있고, 커밋과 롤백이 자동으로 처리된다.
+      
+      TransactionTemplate.execute(new TransactionCallbackWithoutResult() {
+        protected void doInTransactionWithoutResult(TransactionStatus status) {내부에 비지니스 로직 작성}
+      }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
